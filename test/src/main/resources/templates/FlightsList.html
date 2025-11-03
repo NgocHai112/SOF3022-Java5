@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="list">
+    <form action="/flights/search" method="get" class="mb-3 d-flex gap-2">
+        <input name="keyword" class="form-control" placeholder="Search by ID or Airline...">
+        <button class="btn btn-primary">Search</button>
+    </form>
+
+    <table class="table table-bordered table-hover align-middle">
+        <thead class="table-dark text-center">
+        <tr>
+            <th>ID</th>
+            <th>Airline</th>
+            <th>Departure</th>
+            <th>Arrival</th>
+            <th>Depart Time</th>
+            <th>Arrive Time</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="f : ${flights}">
+            <td th:text="${f.flightID}"></td>
+            <td th:text="${f.airline}"></td>
+            <td th:text="${f.departureCity}"></td>
+            <td th:text="${f.arrivalCity}"></td>
+            <td th:text="${#dates.format(f.departureTime, 'dd-MM-yyyy HH:mm')}"></td>
+            <td th:text="${#dates.format(f.arrivalTime, 'dd-MM-yyyy HH:mm')}"></td>
+            <td>
+                <a th:href="@{|/flights/edit/${f.flightID}|}" class="btn btn-sm btn-warning">Edit</a>
+                <a th:href="@{|/flights/delete/${f.flightID}|}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(flights)}">
+            <td colspan="7" class="text-center text-muted">No data available</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

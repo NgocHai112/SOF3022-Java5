@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="form" class="card p-3 shadow-sm mb-4">
+    <form th:object="${flight}" method="post">
+        <div class="row g-3">
+            <div class="col-md-3">
+                <label>Flight ID</label>
+                <input th:field="*{flightID}" class="form-control" required>
+            </div>
+            <div class="col-md-5">
+                <label>Airline</label>
+                <input th:field="*{airline}" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label>Departure City</label>
+                <input th:field="*{departureCity}" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label>Arrival City</label>
+                <input th:field="*{arrivalCity}" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label>Departure Time</label>
+                <input th:field="*{departureTime}" type="datetime-local" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label>Arrival Time</label>
+                <input th:field="*{arrivalTime}" type="datetime-local" class="form-control">
+            </div>
+        </div>
+        <hr>
+        <div class="d-flex gap-2">
+            <button formaction="/flights/create" class="btn btn-success">Create</button>
+            <button formaction="/flights/update" class="btn btn-warning">Update</button>
+            <a href="/flights/index" class="btn btn-secondary">Reset</a>
+
+            <!-- Nút Delete -->
+            <a th:href="@{'/flights/delete/' + ${flight.flightID}}"
+               class="btn btn-danger"
+               onclick="return confirm('Bạn có chắc muốn xóa chuyến bay này không?')">
+                Delete
+            </a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

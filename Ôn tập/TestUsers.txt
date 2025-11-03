@@ -1,0 +1,48 @@
+-- ================================================
+-- 🔹 DATABASE: TestUsers
+-- 🔹 Mục đích: CRUD + Search + Validate (Theo đề ôn tập Java 5)
+-- ================================================
+
+-- Xóa database cũ nếu tồn tại
+IF DB_ID('TestUsers') IS NOT NULL
+    DROP DATABASE TestUsers;
+GO
+
+-- Tạo database mới
+CREATE DATABASE TestUsers;
+GO
+
+USE TestUsers;
+GO
+
+-- Tạo bảng Users
+CREATE TABLE Users (
+    id NVARCHAR(50) PRIMARY KEY,
+    fullname NVARCHAR(100) NOT NULL,
+    email NVARCHAR(100) NOT NULL,
+    password NVARCHAR(100) NOT NULL
+);
+GO
+
+-- Thêm dữ liệu mẫu
+INSERT INTO Users (id, fullname, email, password) VALUES
+('u001', N'Nguyễn Văn An', 'an@example.com', '123'),
+('u002', N'Lê Thị Bích', 'bich@example.com', '123'),
+('u003', N'Trần Văn Cường', 'cuong@example.com', '123'),
+('u004', N'Phạm Thu Dung', 'dung@example.com', '123'),
+('u005', N'Hoàng Gia Đạt', 'dat@example.com', '123'),
+('u006', N'Nguyễn Minh Đức', 'duc@example.com', '123'),
+('u007', N'Phan Thanh Hương', 'huong@example.com', '123'),
+('u008', N'Lê Văn Hậu', 'hau@example.com', '123'),
+('u009', N'Trịnh Quỳnh Hoa', 'hoa@example.com', '123'),
+('u010', N'Đỗ Trung Hiếu', 'hieu@example.com', '123'),
+('u011', N'Võ Quốc Khánh', 'khanh@example.com', '123'),
+('u012', N'Nguyễn Phương Lan', 'lan@example.com', '123'),
+('u013', N'Phạm Minh Long', 'long@example.com', '123'),
+('u014', N'Lý Ngọc Mai', 'mai@example.com', '123'),
+('u015', N'Ngô Anh Tuấn', 'tuan@example.com', '123');
+GO
+
+-- Kiểm tra dữ liệu
+SELECT * FROM Users;
+GO
